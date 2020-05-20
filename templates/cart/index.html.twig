@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!{% endblock %}
+
+
+    {% block body %}
+        <h1>Check Out</h1>
+
+        <ul class="thumbnails">
+
+            {% if empty %}
+                <h5>Geen kamer gebooked.</h5>
+            {% endif %}
+            {% set cart = app.session.get('cart') %}
+            {% set total = 0 %}
+            {% set count = 0 %}
+
+            {% if reservering %}
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="table table-responsive">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Quantity</th>
+                                <th>Code</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for key, item in cart %}
+                                <tr>
+                                    <td>{{ key }}</td>
+                                    <td>{{ item }}</td>
+
+                                    {% for row in reservering %}
+                                        {% if row.id == 0 %}
+                                    <td>{{ reservering.id }}</td>
+                                    <td>{{ reservering.CheckinDate ? reservering.CheckinDate|date('Y-m-d') : '' }}</td>
+                                    <td>{{ reservering.checkOutDate ? reservering.checkOutDate|date('Y-m-d') : '' }}</td>
+                                    <td>{{ reservering.betaalmethode }}</td>
+                                    <td>
+                                            {% set total = total + (row.getPrijs * item)  %}
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    <td><a href="{{ path('cart_remove', {'id': key}) }}"><button class="btn btn-danger">Remove</button></a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+            {% endif %}
+        </ul>
+
+        <H4 class="right">Total in Cart = €{{ total | number_format(2) }}</H4>
+        <a href="checkout"><button type="button" class="btn btn-success col-lg-2 pull-right">Checkout!</button></a>
+        <a href="/reservering/"><button type="button" class="btn btn-info col-lg-2 right">Go back to reservering!</button></a>
+
+
+    {% endblock %}

@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FosUser{% endblock %}
+
+{% block body %}
+    <h1>FosUser</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ fos_user.id }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ fos_user.username }}</td>
+            </tr>
+            <tr>
+                <th>Username_canonice</th>
+                <td>{{ fos_user.usernameCanonice }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ fos_user.email }}</td>
+            </tr>
+            <tr>
+                <th>Email_canonical</th>
+                <td>{{ fos_user.emailCanonical }}</td>
+            </tr>
+            <tr>
+                <th>Enabled</th>
+                <td>{{ fos_user.enabled }}</td>
+            </tr>
+            <tr>
+                <th>Salt</th>
+                <td>{{ fos_user.salt }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ fos_user.password }}</td>
+            </tr>
+            <tr>
+                <th>Last_login</th>
+                <td>{{ fos_user.lastLogin }}</td>
+            </tr>
+            <tr>
+                <th>Confirmation_token</th>
+                <td>{{ fos_user.confirmationToken }}</td>
+            </tr>
+            <tr>
+                <th>Password_requeste</th>
+                <td>{{ fos_user.passwordRequeste }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ fos_user.roles }}</td>
+            </tr>
+            <tr>
+                <th>Last_activity</th>
+                <td>{{ fos_user.lastActivity }}</td>
+            </tr>
+            <tr>
+                <th>Tel_nr</th>
+                <td>{{ fos_user.telNr }}</td>
+            </tr>
+            <tr>
+                <th>Mobile_nr</th>
+                <td>{{ fos_user.mobileNr }}</td>
+            </tr>
+            <tr>
+                <th>First_name</th>
+                <td>{{ fos_user.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Insertion_name</th>
+                <td>{{ fos_user.insertionName }}</td>
+            </tr>
+            <tr>
+                <th>Last_name</th>
+                <td>{{ fos_user.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Adress</th>
+                <td>{{ fos_user.adress }}</td>
+            </tr>
+            <tr>
+                <th>Zip</th>
+                <td>{{ fos_user.zip }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ fos_user.city }}</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>{{ fos_user.country }}</td>
+            </tr>
+            <tr>
+                <th>Functioneel</th>
+                <td>{{ fos_user.functioneel }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('fos_user_index') }}">back to list</a>
+
+    <a href="{{ path('fos_user_edit', {'id': fos_user.id}) }}">edit</a>
+
+    {{ include('fos_user/_delete_form.html.twig') }}
+{% endblock %}

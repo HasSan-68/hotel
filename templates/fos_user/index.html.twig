@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FosUser index{% endblock %}
+
+{% block body %}
+    <h1>FosUser index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>Username_canonice</th>
+                <th>Email</th>
+                <th>Email_canonical</th>
+                <th>Enabled</th>
+                <th>Salt</th>
+                <th>Password</th>
+                <th>Last_login</th>
+                <th>Confirmation_token</th>
+                <th>Password_requeste</th>
+                <th>Roles</th>
+                <th>Last_activity</th>
+                <th>Tel_nr</th>
+                <th>Mobile_nr</th>
+                <th>First_name</th>
+                <th>Insertion_name</th>
+                <th>Last_name</th>
+                <th>Adress</th>
+                <th>Zip</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Functioneel</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {%for Fos_User in Fos_User%}
+            <tr>
+                <td>{{ fos_user.id }}</td>
+                <td>{{ fos_user.username }}</td>
+                <td>{{ fos_user.usernameCanonice }}</td>
+                <td>{{ fos_user.email }}</td>
+                <td>{{ fos_user.emailCanonical }}</td>
+                <td>{{ fos_user.enabled }}</td>
+                <td>{{ fos_user.salt }}</td>
+                <td>{{ fos_user.password }}</td>
+                <td>{{ fos_user.lastLogin }}</td>
+                <td>{{ fos_user.confirmationToken }}</td>
+                <td>{{ fos_user.passwordRequeste }}</td>
+                <td>{{ fos_user.roles }}</td>
+                <td>{{ fos_user.lastActivity }}</td>
+                <td>{{ fos_user.telNr }}</td>
+                <td>{{ fos_user.mobileNr }}</td>
+                <td>{{ fos_user.firstName }}</td>
+                <td>{{ fos_user.insertionName }}</td>
+                <td>{{ fos_user.lastName }}</td>
+                <td>{{ fos_user.adress }}</td>
+                <td>{{ fos_user.zip }}</td>
+                <td>{{ fos_user.city }}</td>
+                <td>{{ fos_user.country }}</td>
+                <td>{{ fos_user.functioneel }}</td>
+                <td>
+                    <a href="{{ path('Fos_User_show', {'id': Fos_User.id}) }}">show</a>
+                    <a href="{{ path('Fos_User_edit', {'id': Fos_User.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="24">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('fos_user_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Organisatiom index{% endblock %}
+
+{% block body %}
+    <h1>Organisatiom index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Adres</th>
+                <th>Zip</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Website</th>
+                <th>Email</th>
+                <th>Phone_nr</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for organisatiom in organisatioms %}
+            <tr>
+                <td>{{ organisatiom.id }}</td>
+                <td>{{ organisatiom.name }}</td>
+                <td>{{ organisatiom.adres }}</td>
+                <td>{{ organisatiom.zip }}</td>
+                <td>{{ organisatiom.city }}</td>
+                <td>{{ organisatiom.country }}</td>
+                <td>{{ organisatiom.website }}</td>
+                <td>{{ organisatiom.email }}</td>
+                <td>{{ organisatiom.phoneNr }}</td>
+                <td>
+                    <a href="{{ path('organisatiom_show', {'id': organisatiom.id}) }}">show</a>
+                    <a href="{{ path('organisatiom_edit', {'id': organisatiom.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('organisatiom_new') }}">Create new</a>
+{% endblock %}

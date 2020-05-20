@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservering index{% endblock %}
+
+{% block body %}
+    <h1>Reservering index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CheckinDate</th>
+                <th>CheckOutDate</th>
+                <th>Betaalmethode</th>
+                <th>Prijs</th>
+                <th>User</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservering in reserverings %}
+            <tr>
+                <td>{{ reservering.id }}</td>
+                <td>{{ reservering.CheckinDate ? reservering.CheckinDate|date('Y-m-d') : '' }}</td>
+                <td>{{ reservering.checkOutDate ? reservering.checkOutDate|date('Y-m-d') : '' }}</td>
+                <td>{{ reservering.betaalmethode }}</td>
+                <td>{{ reservering.kamerid  }}</td>
+
+
+                <td>
+                <td>
+                    <a href="{{ path('reservering_show', {'id': reservering.id}) }}">show</a>
+                    <a href="{{ path('reservering_edit', {'id': reservering.id}) }}">edit</a>
+                    <a href="{{ path('cart_add', {'id': reservering.id}) }}">order</a>
+
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('reservering_new') }}">Create new</a>
+{% endblock %}
